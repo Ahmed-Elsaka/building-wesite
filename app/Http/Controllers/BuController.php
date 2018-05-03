@@ -36,7 +36,7 @@ class BuController extends Controller
             $fileName = $buRequest->file('image')->getClientOriginalName();
             $buRequest->file('image')->move(base_path().'/public/website/bu_images/', $fileName);
           */
-            $fileName = uploadImage($buRequest->file('image'));
+            $fileName = uploadImage($buRequest->file('image'),'/public/website/bu_images/', 500, 362,$buUpdate->image);
 
             if($fileName == false){
 
@@ -89,7 +89,8 @@ class BuController extends Controller
         $bus = $bu->all();
         return DataTables::of($bus)
             ->editColumn('bu_name', function($model){
-                return $model->bu_name;
+                $var =\Html::link('/adminpanel/bu/'. $model->id .'/edit',$model->bu_name,array('class'=>''));
+                return $var;
                 //return \Html::link('/users/'. $model->id .'/edit',$model->name, '/edit', $model->name);
             })
             ->editColumn('bu_type', function($model) {
@@ -188,5 +189,9 @@ class BuController extends Controller
             $same_rent = $bu->where('bu_rent',$buInfo->bu_rent)->orderBy(DB::raw('RAND()'))->take(3)->get();
             $same_type = $bu->where('bu_type',$buInfo->bu_type)->orderBy(DB::raw('RAND()'))->take(3)->get();
             return view('website.bu.buInfo',compact('buInfo','same_rent','same_type'));
+    }
+    public function getAjaxInfo(Request $request, Bu $bu){
+        return $bu->find($request->id)->toJson();
+
     }
 }

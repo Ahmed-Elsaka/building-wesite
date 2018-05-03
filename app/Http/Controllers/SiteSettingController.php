@@ -26,7 +26,7 @@ class SiteSettingController extends Controller
             if($siteSettingUpdate->type !=3){
                 $siteSettingUpdate->fill(['value' => $req ])->save();
             }else{
-                $fileName = uploadImage($req, 'public/website/slider/', 1600, 500 );
+                $fileName = uploadImage($req, 'public/website/slider/', 1600, 500 ,$siteSettingUpdate->value);
 
                 if($fileName){
                     $siteSettingUpdate->fill(['value' => $fileName ])->save();

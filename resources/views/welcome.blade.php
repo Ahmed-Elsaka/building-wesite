@@ -72,7 +72,7 @@
                     {!! Form::close() !!}
                 </div>
                 </p>
-                <a class="banner_btn" href="{{ url('/ShowAllBuildings') }}"> More Properties</a> </div>
+                <a class="banner_btn" href="{{ url('/user/create/building') }}"> Add new Property</a> </div>
         </div>
     </div>
     <div class="main">
@@ -80,8 +80,8 @@
 
         <ul class="cd-items cd-container">
             @foreach(\App\BU::where('bu_status',1)->get() as $bu)
-            <li class="cd-item">
-                <img src="{{ checkIfImageIsExist($bu->image) }}" alt="{{$bu->name}}" title="{{$bu->name}}">
+            <li class="cd-item effect8" >
+                <img src="{{ checkIfImageIsExist($bu->image,'/public/website/thumb/','/website/thumb/') }}" alt="{{$bu->name}}" title="{{$bu->name}}">
                 <a href="#0" data-id="{{$bu->id}}" class="cd-trigger"  title="{{$bu->name}}">Quick View</a>
             </li> <!-- cd-item -->
             @endforeach
@@ -91,24 +91,18 @@
         <div class="cd-quick-view">
             <div class="cd-slider-wrapper">
                 <ul class="cd-slider">
-                    <li class="selected"><img src="/main/img/item-1.jpg" alt="Product 1"></li>
-                    <li><img src="/main/img/item-2.jpg" alt="Product 2"></li>
-                    <li><img src="/main/img/item-3.jpg" alt="Product 3"></li>
+                    <li><img src="/main/img/item-1.jpg" class="imagebox" alt="Product 1"></li>
                 </ul> <!-- cd-slider -->
 
-                <ul class="cd-slider-navigation">
-                    <li><a class="cd-next" href="#0">Prev</a></li>
-                    <li><a class="cd-prev" href="#0">Next</a></li>
-                </ul> <!-- cd-slider-navigation -->
             </div> <!-- cd-slider-wrapper -->
 
             <div class="cd-item-info">
-                <h2>Produt Title</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia, omnis illo iste ratione. Numquam eveniet quo, ullam itaque expedita impedit. Eveniet, asperiores amet iste repellendus similique reiciendis, maxime laborum praesentium.</p>
+                <h2 class="titlebox"></h2>
+                <p class="disbox"></p>
 
                 <ul class="cd-item-action">
-                    <li><button class="add-to-cart">Add to cart</button></li>
-                    <li><a href="#0">Learn more</a></li>
+                    <li><a href="" class="add-to-cart pricebox">Add to cart</a></li>
+                    <li><a href="#0" class="morbox">Learn more</a></li>
                 </ul> <!-- cd-item-action -->
             </div> <!-- cd-item-info -->
             <a href="#0" class="cd-close">Close</a>
@@ -135,5 +129,13 @@
     <!-- this libraries related to items in welcome page -->
     <script src="{{ Request::root() }}/main/js/jquery-2.1.1.js"></script>
     <script src="{{ Request::root() }}/main/js/velocity.min.js"></script>
+    <script>
+        function urlHome(){
+            return '{{ Request::root() }}'
+        }
+        function noImageUrl(){
+            return '{{ getSetting('no_image') }}'
+        }
+    </script>
     <script src="{{ Request::root() }}/main/js/main.js"></script> <!-- Resource jQuery -->
 @endsection

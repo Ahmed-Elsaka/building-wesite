@@ -44,11 +44,19 @@
                         <a href="{{ url('/search?rooms='.$buInfo->rooms) }}" class="btn btn-default">No of Rooms: {{ $buInfo->rooms }}</a>
                         <a href="{{ url('/search?bu_type='.$buInfo->bu_type) }}" class="btn btn-default">Building Type: {{ bu_type()[$buInfo->bu_type] }}</a>
                         <a href="{{ url('/search?bu_type='.$buInfo->bu_rent) }}" class="btn btn-default">Sale-Rent: {{ bu_rent()[$buInfo->bu_rent] }}</a>
+
+
                         <hr>
                         <img src="{{ checkIfImageIsExist($buInfo->image) }}" class="img-responsive"><br>
                         <p>{!! nl2br($buInfo->bu_larg_dis)  !!} </p>
                         <br>
                         <div id="map" style="width:100%;height:300px"></div>
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ae2f67c464cbb8a"></script>
+                        <br>
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <div class="addthis_inline_share_toolbox"></div>
+
                     </div>
                 </div>
                 <br>

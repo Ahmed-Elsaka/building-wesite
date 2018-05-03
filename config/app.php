@@ -149,6 +149,8 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+
 
         /*
          * Package Service Providers...
@@ -216,7 +218,8 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Datatables' =>Yajra\DataTables\DataTables::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
-    ],
+],
 
 ];

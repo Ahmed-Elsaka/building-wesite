@@ -35,7 +35,7 @@
                                     <label for="name" class="text-md-right" >{{ __($setting->slug) }}</label>
                                 </div>
                                 <div class="col-md-10">
-                                    @if($setting->type ==0)
+                                    @if($setting->type !=3)
                                          {!! Form::text($setting->namesetting, $setting->value , ['class'=>'form-control']) !!}
                                     @elseif($setting->type ==3)
                                         @if($setting->value !='')
@@ -45,9 +45,8 @@
                                         {!! Form::file($setting->namesetting, null, ['class'=>'form-control']) !!}
                                         <br>
                                             {{ $setting->value }}
-
-                                            {!! Form::text($setting->namesetting, $setting->value , ['class'=>'form-control']) !!}
                                     @endif
+
                                     @if ($errors->has($setting->namesetting))
                                         <span class="invalid-feedback">
                                             <strong>{{ $errors->first($setting->namesetting) }}</strong>

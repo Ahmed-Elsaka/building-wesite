@@ -48,77 +48,30 @@
                     <li class="dropdown messages-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope-o"></i>
-                            <span class="label label-success">4</span>
+                            <span class="label label-success">{{CountUnreadMessage()}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">You have 4 messages</li>
+                            <li class="header">You have {{CountUnreadMessage()}} unreaded messages</li>
                             <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu">
+                                    @foreach(UnreadMessage() as $keyMessage => $valueMessage)
                                     <li><!-- start message -->
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                Support Team
-                                                <small><i class="fa fa-clock-o"></i> 5 mins</small>
+
+                                        <a href="{{url('/adminpanel/contact/'.$valueMessage->id.'/edit')}}">
+                                            <h4 style="margin-left: 2px ">
+                                                {{ $valueMessage->contact_name }}
+                                                <small ><i class="fa fa-clock-o"></i> {{ $valueMessage->created_at }}</small>
                                             </h4>
-                                            <p>Why not buy a new awesome theme?</p>
+                                            <p  style="margin-left: 10px ">{{str_limit( $valueMessage->contact_message ,20)}}</p>
                                         </a>
                                     </li>
                                     <!-- end message -->
-                                    <li>
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                AdminLTE Design Team
-                                                <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                Developers
-                                                <small><i class="fa fa-clock-o"></i> Today</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                Sales Department
-                                                <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="pull-left">
-                                                <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                            </div>
-                                            <h4>
-                                                Reviewers
-                                                <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                            </h4>
-                                            <p>Why not buy a new awesome theme?</p>
-                                        </a>
-                                    </li>
+                                        @endforeach
+
                                 </ul>
                             </li>
-                            <li class="footer"><a href="#">See All Messages</a></li>
+                            <li class="footer"><a href="{{ url('adminpanel/contact') }}">See All Messages</a></li>
                         </ul>
                     </li>
                     <!-- Notifications: style can be found in dropdown.less -->

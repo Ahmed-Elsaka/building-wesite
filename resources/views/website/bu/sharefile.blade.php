@@ -38,8 +38,9 @@
                 @endif
                 <div class="col-md-4">
                     <div class="productbox">
-                        <img src="{{ checkIfImageIsExist( $b->image) }}" class="img-responsive">
-                        <div class="producttitle">{{ $b->bu_name }}</div>
+                        <img src="{{  checkIfImageIsExist($b->image,'/public/website/thumb/','/website/thumb/')}}" class="img-responsive">
+
+                        <div class="producttitle">{{str_limit( $b->bu_name ,20)  }}</div>
                         <p class="text-justify dis">{{ str_limit( $b->bu_small_dis ,50)  }}</p>
                         <hr>
                         <span>Area : {{ $b->bu_square }}    </span>

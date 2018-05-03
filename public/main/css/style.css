@@ -1,4 +1,4 @@
-/* -------------------------------- 
+/* --------------------------------
 
 Primary style
 
@@ -17,7 +17,6 @@ body {
   font-size: 100%;
   font-family: "PT Sans", sans-serif;
   color: #3e585f;
-  background-color: #47374e;
 }
 body::after {
   /* dark overlay layer - visible when we fire .cd-quick-view */
@@ -52,7 +51,7 @@ img {
   max-width: 100%;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
 Modules - reusable parts of our design
 
@@ -69,9 +68,9 @@ Modules - reusable parts of our design
   clear: both;
 }
 
-/* -------------------------------- 
+/* --------------------------------
 
-Main components 
+Main components
 
 -------------------------------- */
 html, body {
@@ -216,6 +215,7 @@ header h1 {
     max-width: 900px;
     visibility: hidden;
     /* Force Hardware Acceleration in WebKit */
+    width:  220px;
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
     -ms-transform: translateZ(0);
@@ -264,6 +264,7 @@ header h1 {
   top: 0;
   left: 0;
   z-index: 1;
+  width: 220px;
 }
 .cd-slider li img {
   display: block;
@@ -420,6 +421,7 @@ header h1 {
   position: relative;
   visibility: visible;
   opacity: 1;
+  margin-left: 255px;
 }
 .add-content .cd-item-info h2 {
   -webkit-animation: cd-slide-in 0.3s;
@@ -533,4 +535,42 @@ header h1 {
   -webkit-transition: -webkit-transform .3s 0s, visibility 0s 0s;
   -moz-transition: -moz-transform .3s 0s, visibility 0s 0s;
   transition: transform .3s 0s, visibility 0s 0s;
+}
+
+
+
+/*==================================================
+ * Effect 8
+ * ===============================================*/
+.effect8
+{
+  position:relative;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.effect8:before, .effect8:after
+{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+  -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+  box-shadow:0 0 20px rgba(0,0,0,0.8);
+  top:10px;
+  bottom:10px;
+  left:0;
+  right:0;
+  -moz-border-radius:100px / 10px;
+  border-radius:100px / 10px;
+}
+.effect8:after
+{
+  right:10px;
+  left:auto;
+  -webkit-transform:skew(8deg) rotate(3deg);
+  -moz-transform:skew(8deg) rotate(3deg);
+  -ms-transform:skew(8deg) rotate(3deg);
+  -o-transform:skew(8deg) rotate(3deg);
+  transform:skew(8deg) rotate(3deg);
 }

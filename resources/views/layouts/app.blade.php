@@ -71,7 +71,7 @@
                                 </ul>
                             </li>
 
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="{{ url('/contact') }}">Contact Us</a></li>
 
 
 
@@ -126,7 +126,10 @@
     {!! Html::script('website/js/bootstrap.min.js') !!}
     {!! Html::script('website/js/jquery.flexslider.js') !!}
     {!! Html::script('website/js/responsive-nav.js') !!}
+        {!! Html::script('cus/sweetalert.min.js') !!}
+        @include('/admin/layouts/f_message')
     @yield('footer')
+
 
 </body>
 

@@ -6,6 +6,25 @@ jQuery(document).ready(function($){
 
 	//open the quick view panel
 	$('.cd-trigger').on('click', function(event){
+		 var url = urlHome();
+		 var noImage= noImageUrl();
+		 var id = $(this).data('id');
+		 $.get(url+'/ajax/bu/information',{id:id},function(res){
+		 	// this function call getAjaxInfo function on buController
+			var json =JSON.parse(res);
+			$('.titlebox').html(json.bu_name);
+             $('.disbox').html(json.bu_small_dis);
+             $('.pricebox').html(json.bu_price+'$');
+             if(json.image ==null){
+                 $('.imagebox').attr('src',noImage);
+			 }else{
+                 $('.imagebox').attr('src',url+'/website/thumb/'+json.image);
+			 }
+
+             $('.morbox').attr('href',url+'/SingleBuilding/'+json.id);
+             $('.pricebox').attr('href',url+'/search?bu_price='+json.bu_price);
+		 });
+
 		var selectedImage = $(this).parent('.cd-item').children('img'),
 			slectedImageUrl = selectedImage.attr('src');
 

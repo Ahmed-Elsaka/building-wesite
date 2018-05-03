@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::group(['middleware'=>['web','admin']], function(){
     Route::get('/users/data',['as' => 'users.data', 'uses'=>'UsersController@anyData']);
     Route::get('/adminpanel/bu/data',['as' => 'adminpanel.bu.data', 'uses'=>'BuController@anyData']);
+    Route::get('/adminpanel/contact/data',['as' => 'adminpanel.contact.data', 'uses'=>'ContactController@anyData']);
     #admin
     Route::get('/adminpanel','AdminController@index');
     #users
@@ -29,6 +30,10 @@ Route::group(['middleware'=>['web','admin']], function(){
     Route::get('/adminpanel/sitesetting','SiteSettingController@index');
     Route::post('/adminpanel/sitesetting','SiteSettingController@store');
 
+
+    #contact us
+    Route::resource('/adminpanel/contact','ContactController');
+    Route::get('/adminpanel/contact/{id}/delete','ContactController@destroy');
 
     #users
     Route::resource('/adminpanel/bu','BuController');
@@ -44,9 +49,17 @@ Route::get('/ForBuy','BuController@ForBuy');
 Route::get('/type/{type}','BuController@ShowByType');
 Route::get('/search','BuController@search');
 Route::get('/SingleBuilding/{id}','BuController@SingleBuilding');
+Route::get('/ajax/bu/information','BuController@getAjaxInfo');
+Route::get('/contact','HomeController@contact');
+Route::post('/contact','ContactController@store');
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//add property from user
+Route::get('/user/create/building','BuController@userAddView');
+Route::post('/user/create/building','BuController@userStore');

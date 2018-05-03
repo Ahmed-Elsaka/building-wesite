@@ -40,3 +40,15 @@
         <li><a href="{{ url('adminpanel/bu') }}"><i class="fa fa-circle-o"></i> All Properties </a></li>
     </ul>
 </li>
+{{-- Contact --}}
+<li class=" treeview">
+    <a href="{{ url('/users') }}">
+        <i class="fa fa-users"></i> <span>Site Messages</span>
+        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="{{ url('adminpanel/contact') }}"><i class="fa fa-circle-o"></i> Messages  </a></li>
+    </ul>
+</li>

@@ -53,10 +53,10 @@
                 <li style="margin-top: 10px">
                     {!! Form::text("bu_price_to", null ,['class'=>'form-control','placeholder'=>'Price to']) !!}
                 </li >
-                <li style="margin-top: 10px; width: 89%" >
+                <li style="margin-top: 10px" >
                     {!! Form::select("rooms",roomnumber(), null,['class'=>'form-control js-example-basic-single']) !!}
                 </li>
-                <li style=" margin-top: 10px  ; width: 89%" >
+                <li style=" margin-top: 10px  " >
                     {!! Form::select("bu_place",bu_place(), null,['class'=>'js-example-basic-single form-control']) !!}
                 </li>
                 <li style="margin-top: 10px ">

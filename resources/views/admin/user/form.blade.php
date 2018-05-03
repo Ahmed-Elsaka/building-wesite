@@ -77,7 +77,7 @@
 @else
     <!-- Update USER -->
     <div class="form-group row">
-        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+        <label for="name" class="col-md-4 col-form-label text-md-right" style="padding-left:10%">{{ __('Name') }}</label>
 
         <div class="col-md-6">
             {!! Form::text("name", $user->name , ['class'=>'form-control']) !!}
@@ -89,7 +89,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('admin') }}</label>
+        <label for="name" class="col-md-4 col-form-label text-md-right" style="padding-left:10%">{{ __('admin') }}</label>
 
         <div class="col-md-6">
             {!! Form::select("admin", ['0'=>'user', '1'=>'admin'] , ['class'=>'form-control']) !!}
@@ -102,7 +102,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+        <label for="email" class="col-md-4 col-form-label text-md-right" style="padding-left:10%">{{ __('E-Mail Address') }}</label>
 
         <div class="col-md-6">
             {!! Form::text("email", $user->email , ['class'=>'form-control']) !!}
@@ -115,7 +115,7 @@
         </div>
     </div>
     <div class="form-group row mb-0">
-    <div class="col-md-6 offset-md-4">
+    <div class="col-md-6 offset-md-4" style="padding-left:10%">
         <button type="submit" class="btn btn-primary">
             {{ __('Update Member') }}
         </button>

@@ -15,8 +15,10 @@ function checkIfImageIsExist($imageName = '',  $pathImage = '/public/website/bu_
 }
 
 function uploadImage($buRequest, $path = '/public/website/bu_images/', $width = 500, $hight = 362 ,$deleteFileWithName=''){
+    if($deleteFileWithName !=''){
+        deleteImage(base_path($path .$deleteFileWithName));
+    }
     $dim = getimagesize($buRequest);
-
     $fileName = $buRequest->getClientOriginalName();
     $buRequest->move(base_path($path), $fileName);
     if($width = 500 && $hight = 362){
@@ -27,9 +29,7 @@ function uploadImage($buRequest, $path = '/public/website/bu_images/', $width = 
             deleteImage($thumbPath .$deleteFileWithName);
         }
     }
-    if($deleteFileWithName !=''){
-        deleteImage(base_path($path .$deleteFileWithName));
-    }
+
     return $fileName;
 }
 function deleteImage($deleteFileWithName){
@@ -103,4 +103,24 @@ function UnreadMessage(){
 }
 function CountUnreadMessage(){
     return \App\ContactUs::where('view',0)->count();
+}
+
+function setActive($array,$class="active"){
+    $seg_array =[];
+    if(!empty($array)){
+        foreach ($array as $key =>$url){
+            if(Request::segment($key+1) == $url){
+                $seg_array[]=$url;
+            }
+        }
+        if(count($seg_array) == count(Request::segments())){
+            if(isset($seg_array[0])){
+                return $class;
+            }
+
+        }
+    }
+
+    // Request::segments() return all pathes after your root link as array
+
 }

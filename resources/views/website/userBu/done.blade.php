@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Add new Property
+    The properity has been add successfully
 @endsection
 @section('header')
     {!! Html::style('cus/buall.css') !!}
@@ -16,6 +16,7 @@
                 <ol class="breadcrumb">
                     <li><a href="{{ url('/ShowAllBuildings') }}">All</a> </li>
                     <li><a href="{{ url('/user/create/building') }}">Add new Property</a> </li>
+                    <li class="active"><a href="">Added Done</a> </li>
 
 
                 </ol>
@@ -23,9 +24,12 @@
             @include('/website/bu/pages')
             <div class="col-md-9">
                 <div class="profile-content">
-                    {!! Form::open(['url' =>'/user/create/building', 'method' =>'post', 'files'=> true]) !!}
-                @include('admin.bu.form',['user'=>1])
-                    {!! Form::close() !!}
+                    <div class="alert alert-success">
+                        The properity has been add
+                        <b>
+                             successfully
+                        </b>
+                        </div>
                     <br>
                 </div>
             </div>
@@ -35,21 +39,4 @@
 
 
 
-@endsection
-@section('footer')
-    {{--
-        {!! Html::script('cus/js/select2.js') !!}
-    <script>
-
-            $('.select2').select2();
-
-    </script>
-
-    --}}
-    {!! Html::script('cus/js/select2.js') !!}
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-single').select2();
-        });
-    </script>
 @endsection

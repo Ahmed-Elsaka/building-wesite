@@ -31,13 +31,12 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <form action="{{ route('users.update',$user->id) }}" method="POST">
-                            @csrf
-                            @method('PUT')
 
-                            @csrf
+                            {!! Form::model($user,['route'=>['users.update',$user->id],'method'=>'PATCH']) !!}
+
                             @include('admin.user.form')
-                        </form>
+                            {!! Form::close() !!}
+
 
                     </div>
                     <!-- /.box-body -->

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Add new Property
+    {{$user->name}} Properties
 @endsection
 @section('header')
     {!! Html::style('cus/buall.css') !!}
@@ -14,19 +14,20 @@
         <div class="container">
             <div class="row profile">
                 <ol class="breadcrumb">
-                    <li><a href="{{ url('/ShowAllBuildings') }}">All</a> </li>
-                    <li><a href="{{ url('/user/create/building') }}">Add new Property</a> </li>
-
-
+                    <li><a href="{{ url('/') }}">Home</a> </li>
+                    <li><a href="{{ url('/ShowAllBuildings') }}">All Buildings</a> </li>
+                    <li class="active"><a href="#">{{ $user->name }} Properties</a> </li>
                 </ol>
             </div>
             @include('/website/bu/pages')
             <div class="col-md-9">
                 <div class="profile-content">
-                    {!! Form::open(['url' =>'/user/create/building', 'method' =>'post', 'files'=> true]) !!}
-                @include('admin.bu.form',['user'=>1])
-                    {!! Form::close() !!}
-                    <br>
+                @include('/website/bu/sharefile',['bu'=>$bu])
+                @if(!isset($search))
+                    {{ $bu->appends(Request::except('page'))->render() }}
+                @endif
+                <!-- adjust pagination -->
+
                 </div>
             </div>
         </div>

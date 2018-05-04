@@ -53,12 +53,21 @@
 
                         <div class="productprice">
                             <div class="pull-right">
-                                <a href="{{ url('/SingleBuilding/'.$b->id) }}" class="btn btn-primary btm-sm" role="button">
-                                    Show Details
-                                    <span class="fa fa-arrow-circle-o-left" style="color: #ffffff"></span>
-                                </a>
+                                @if($b->bu_status ==0)
+
+                                        <span class=" btn btn-danger  " role="button" > Waiting ...<span class="fa fa-arrow-circle-o-left" style="color: #ffffff"></span> </span>
+                                        <a href="{{ url('/user/editBuilding/'.$b->id) }}" class="btn btn-success">Edit Property</a>
+
+                                    @else
+                                    <a href="{{ url('/SingleBuilding/'.$b->id) }}" class="btn btn-primary btm-sm" role="button">
+                                        Show Details
+                                        <span class="fa fa-arrow-circle-o-left" style="color: #ffffff"></span>
+                                    </a>
+
+                                    @endif
+
                             </div>
-                            <div class="pricetext">{{ $b->bu_price }} €</div>
+                            <div class="pricetext">Price : {{ $b->bu_price }} €</div>
                         </div>
                     </div>
                 </div>

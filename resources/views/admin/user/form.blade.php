@@ -88,6 +88,7 @@
             @endif
         </div>
     </div>
+    @if(!isset($showforuser))
     <div class="form-group row">
         <label for="name" class="col-md-4 col-form-label text-md-right" style="padding-left:10%">{{ __('admin') }}</label>
 
@@ -101,6 +102,7 @@
             @endif
         </div>
     </div>
+    @endif
     <div class="form-group row">
         <label for="email" class="col-md-4 col-form-label text-md-right" style="padding-left:10%">{{ __('E-Mail Address') }}</label>
 
@@ -117,7 +119,7 @@
     <div class="form-group row mb-0">
     <div class="col-md-6 offset-md-4" style="padding-left:10%">
         <button type="submit" class="btn btn-primary">
-            {{ __('Update Member') }}
+            {{ __('Update Information') }}
         </button>
         @if($user->id !=1)
         <a class="btn btn-danger" href="{{ url('users/'.$user->id.'/delete') }}">Delete Member</a>

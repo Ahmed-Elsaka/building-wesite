@@ -194,4 +194,84 @@ class BuController extends Controller
         return $bu->find($request->id)->toJson();
 
     }
+
+    // add new property to user
+    public function userAddView()
+    {
+        return view('website.userBu.userAdd');
+    }
+    public function userStore(BuRequest $buRequest, BU $bu){
+
+
+        if($buRequest->file('image')) {
+            $fileName = uploadImage($buRequest->file('image'));
+            if(!$fileName){
+                Redirect::back()->withFlashMessage('please select image with size w < 500, l < 362');
+            }
+            $image = $fileName;
+        }else{
+            $image = '';
+        }
+
+
+        $user = Auth::user()?Auth::user()->id :0;
+        $data = [
+            'bu_name' =>$buRequest->bu_name,
+            'bu_price'=>$buRequest->bu_price,
+            'bu_rent'=>$buRequest->bu_rent,
+            'bu_square'=>$buRequest->bu_square,
+            'bu_type'=>$buRequest->bu_type,
+            'bu_small_dis'=>strip_tags(str_limit($buRequest->bu_larg_dis,150)),
+            'bu_meta'=>$buRequest->bu_meta,
+            'bu_langtuite'=>$buRequest->bu_langtuite,
+            'bu_latitude'=>$buRequest->bu_latitude,
+            'bu_larg_dis'=>$buRequest->bu_larg_dis,
+            'bu_status'=>0,
+            'user_id'=>$user,
+            'rooms'=>$buRequest->rooms,
+            'bu_place'=>$buRequest->bu_place,
+            'image'=>$image,
+        ];
+        //dd($data);
+        $bu->create($data);
+        return view('website.userBu.done');
+        //return Redirect('/adminpanel/bu')->withFlashMessage('the Properity Has beed Added Successfully');
+    }
+    
+    
+    // function return buildings to specific user 
+    public function showUserBuildings(BU $bu)
+    {
+        $user = Auth::user();
+        $bu = $bu->where('user_id',$user->id)->where('bu_status',1)->orderBy('id','desc')->paginate(9);
+        return view('website.userBu.showUserBu',compact('bu','user'));
+
+
+    }
+
+    public function showUserWaitingBuildings(BU $bu)
+    {
+        $user = Auth::user();
+        $bu = $bu->where('user_id',$user->id)->where('bu_status',0)->orderBy('id','desc')->paginate(9);
+        return view('website.userBu.showUserBu',compact('bu','user'));
+
+    }
+    public function userEditProperty($id, BU $bu)
+    {
+        $user = Auth::user();
+        $user_id = null;
+        try {
+            $bu_info = $bu->find($id);
+            $user_id = $bu_info->user_id;
+        }catch (\Exception $e){
+            $user_id = -1;
+        }
+
+
+        if($user->id != $user_id){
+            return  Redirect('/user/buldingShow')->withFlashMessage('This Building is not active');
+        }else{
+            return view('website.userBu.edituserbu');
+        }
+    }
 }

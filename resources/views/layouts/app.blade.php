@@ -39,8 +39,8 @@
                         <div class="menu pull-right"> <a class="toggleMenu" href="{{ url('/') }}"><img src="website/images/nav_icon.png" alt="" /> </a>
 
                             <ul class="nav navbar-nav">
-                            <li class="current"><a href="{{ url('/home') }}">Home</a></li>
-                            <li><a href="{{ url('/ShowAllBuildings') }}">All Properties</a></li>
+                            <li class="{{ setActive(['home']) }}"><a href="{{ url('/home') }}">Home</a></li>
+                            <li class="{{ setActive(['ShowAllBuildings']) }}"><a href="{{ url('/ShowAllBuildings') }}">All Properties</a></li>
 
                             <li class="dropdown">
                                 <a  class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"  aria-expanded="false">
@@ -71,7 +71,7 @@
                                 </ul>
                             </li>
 
-                            <li><a href="{{ url('/contact') }}">Contact Us</a></li>
+                            <li class="{{ setActive(['contact']) }}"><a href="{{ url('/contact') }}">Contact Us</a></li>
 
 
 
@@ -84,18 +84,52 @@
                                             {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
 
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
+                                        <div class="dropdown-menu" style="padding: 0px" aria-labelledby="navbarDropdown">
+                                            <ul class="dropdown-menu show" role="menu">
+                                                <li  class="{{ setActive(['user','editinfo']) }}">
+                                                    <a href="{{url('/user/editinfo')}}">
+                                                        <i class="fa fa-edit"></i>
+                                                        Edit Personal Info
+                                                    </a>
+                                                </li>
+                                                <li  class="{{ setActive(['user','buldingShow']) }}">
+                                                    <a href="{{url('/user/buldingShow')}}">
+                                                        <i class="fa fa-check"></i>
+                                                        Active Buildings </a>
+                                                </li>
+                                                <li  class="{{ setActive(['user','buldingShowWait']) }}">
+                                                    <a href="{{url('/user/buldingShowWait')}}">
+                                                        <i class="fa fa-clock-o"></i>
+                                                        Active Waiting Buildings </a>
+                                                </li>
+                                                <li  class="{{ setActive(['user','create','building']) }}">
+                                                    <a href="{{url('/user/create/building')}}">
+                                                        <i class="fa fa-plus "></i>
+                                                        Add new Properity </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
+                                                        <i class="fa fa-sign-out "></i>
+                                                        {{ __('Logout') }}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            {{--add items to USer menue--}}
+
+
+
+
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                         </div>
+
                                     </li>
+
+
                                     @endguest
 
                         </ul>
@@ -119,7 +153,7 @@
                     <a class="fa fa-youtube social-icon" href="{{ getSetting('youtube') }}"></a>
                 </div>
                 <div class="copy">
-                    <p>Copyright &copy; 2015 Company Name. Design by <a href="http://www.templategarden.com" rel="nofollow">TemplateGarden</a></p>
+                    <p>{{getSetting('footer')}} <a href="https://www.facebook.com/ahmedelsaka000" rel="nofollow">Ahmed Elsaka</a> &copy; {{ date('Y') }} Elsaka. Design by<a href="https://www.facebook.com/ahmedelsaka000" rel="nofollow">  Ibrahim</a> </p>
                 </div>
             </div>
         </div>

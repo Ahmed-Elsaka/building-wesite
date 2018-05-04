@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\BU;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Requests\UserUpdatePassword;
+use App\Http\Requests\UserUpdateRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
@@ -105,4 +108,50 @@ class UsersController extends Controller
 
 
     }
+    
+    //functions for  edit user info 
+    public function userEditinfo()
+    {
+
+        $user = Auth::user();
+        return view('website.profile.edit',compact('user'));
+    }
+
+    public function userUpdateProfile(User $users , UserUpdateRequest $userUpdateRequest)
+    {
+        $user = Auth::user();
+        $checkmail = $users->where('email',$userUpdateRequest->email)->count();
+        if($userUpdateRequest->email !=$user->email){
+            if($checkmail ==0){
+                $user->fill($userUpdateRequest->all())->save();
+            }else{
+                return Redirect::back()->withFlashMessage('this email already exist please use another email');
+            }
+
+        }else{
+            $user->fill(['name'=>$userUpdateRequest->name])->save();
+        }
+        return Redirect::back()->withFlashMessage('your information changed successfully');
+    }
+
+    public function userChangePassword(User $users , UserUpdatePassword $userUpdateRequest)
+    {
+        $user = Auth::user();
+        //dd($user->password,Hash::make($userUpdateRequest->password));
+
+        if(Hash::check($userUpdateRequest->password , $user->password)){
+            $newPassword = Hash::make($userUpdateRequest->newpassword);
+            $user->fill(['password'=>$newPassword])->save();
+            return Redirect::back()->withFlashMessage('Password changed successfully');
+        }else{
+            return Redirect::back()->withFlashMessage('Old Password is not correct');
+        }
+
+
+
+
+
+    }
+
+
 }

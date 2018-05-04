@@ -27,7 +27,7 @@ All Properties
             <div class="container">
                 <div class="row profile">
                     <ol class="breadcrumb">
-                       <li><a href="{{ url('/ShowAllBuildings') }}">All</a> </li>
+                       <li><a href="{{ url('/ShowAllBuildings') }}">All Properties</a> </li>
                         @if(isset($array))
                             @if(!empty($array))
                                 @foreach($array as $key => $value)

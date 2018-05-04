@@ -63,3 +63,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 //add property from user
 Route::get('/user/create/building','BuController@userAddView');
 Route::post('/user/create/building','BuController@userStore');
+
+// show buildings to specific user
+Route::get('/user/buldingShow','BuController@showUserBuildings')->middleware('auth');
+Route::get('/user/buldingShowWait','BuController@showUserWaitingBuildings')->middleware('auth');
+
+//let user edit his info
+Route::get('/user/editinfo','UsersController@userEditinfo')->middleware('auth');
+Route::patch('/user/editinfo',['as'=>'user.editinfo','uses'=>'UsersController@userUpdateProfile'])->middleware('auth');
+//let user change his password
+Route::post('/user/changecurrentpassword','UsersController@userChangePassword')->middleware('auth');
+// user can edit un actived proteries
+Route::get('/user/editBuilding/{id}','BuController@userEditProperty')->middleware('auth');
+
+
+

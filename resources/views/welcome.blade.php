@@ -78,8 +78,8 @@
     <div class="main">
 
 
-        <ul class="cd-items cd-container">
-            @foreach(\App\BU::where('bu_status',1)->get() as $bu)
+        <ul class="cd-items cd-container effect8">
+            @foreach(\App\BU::where('bu_status',1)->orderBy('id','desc')->take(12)->get() as $bu)
             <li class="cd-item effect8" >
                 <img src="{{ checkIfImageIsExist($bu->image,'/public/website/thumb/','/website/thumb/') }}" alt="{{$bu->name}}" title="{{$bu->name}}">
                 <a href="#0" data-id="{{$bu->id}}" class="cd-trigger"  title="{{$bu->name}}">Quick View</a>

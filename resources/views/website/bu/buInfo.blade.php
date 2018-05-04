@@ -45,8 +45,9 @@
                         <a href="{{ url('/search?bu_type='.$buInfo->bu_type) }}" class="btn btn-default">Building Type: {{ bu_type()[$buInfo->bu_type] }}</a>
                         <a href="{{ url('/search?bu_type='.$buInfo->bu_rent) }}" class="btn btn-default">Sale-Rent: {{ bu_rent()[$buInfo->bu_rent] }}</a>
 
-
+                        <br>
                         <hr>
+
                         <img src="{{ checkIfImageIsExist($buInfo->image) }}" class="img-responsive"><br>
                         <p>{!! nl2br($buInfo->bu_larg_dis)  !!} </p>
                         <br>
